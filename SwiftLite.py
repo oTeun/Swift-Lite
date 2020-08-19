@@ -281,12 +281,13 @@ for i in range(len(Emails) * 20):
     
     elif req.status_code == 204:
         print (f'{swiftOutput}Received response {i + 1} from mojang with status {GREEN}"Success"{CYAN} | Status code: {req.status_code} [{time() - startSniping}]')
+        print()
         print (f'{swiftOutput}Successfully set name to {wantedName} using Swift Lite v{version}')
         print (f'{swiftOutput}You sniped the name with request {i + 1} !')
-        print (f'{swiftOutput}This request was most likely sent with account on line {(i /20 ) + 1} in Accounts.txt')
+        print (f'{swiftOutput}This request was most likely sent with account on line {int(i /20 ) + 1} in Accounts.txt')
 
         try:
-            files = {'model':'slim', 'file': ('Skin.png', open('LSkin.png', 'rb'))}
+            files = {'model':'slim', 'file': ('Skin.png', open('Skin.png', 'rb'))}
             response = session.put('https://api.mojang.com/user/profile/' + UUIDs[int(i /20 )] + '/skin', headers=({"Authorization":Tokens[int((i + 1) /20 )]}), files=files)
             response = response.result()
             print (f'{swiftOutput}Attempted to change skin | Status code: {response.status_code}')
@@ -294,7 +295,7 @@ for i in range(len(Emails) * 20):
             print (f'{swiftOutput}Couldnt find a skin file, so not uploading skin')
             print (f'{swiftOutput}If you want to always upload a custom skin at snipe, create a file named Skin.png')
 
-        print (f'{swiftOutput}{Emails[i / 20 ]}:{Passwords[i / 20 ]}')
+        print (f'{swiftOutput}{Emails[int(i /20 )]}:{Passwords[int(i /20 )]}')
         input(f'{swiftOutput}Press enter to see the rest of the results\n')
 
         
