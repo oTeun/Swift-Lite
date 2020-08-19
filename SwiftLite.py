@@ -287,6 +287,15 @@ for i in range(len(Emails) * 20):
         print (f'{swiftOutput}This request was most likely sent with account on line {int(i /20 ) + 1} in Accounts.txt')
 
         try:
+            webbhook = open('webhook.txt', 'r+')
+            webhook = webbhook.readlines()
+            webhook = DiscordWebhooks(webhook[0])
+            webhook.set_content(title='New Snipe!', description=f'Succuessfully sniped name `{wantedName}`!', color=0x72FF33)
+            webhook.send()
+            print(f'{swiftOutput}Sent message in #Snipes!')
+        except:
+            print(f'{swiftOutput}Did not find a webhook (or invalid), skipping!')
+        try:
             files = {'model':'slim', 'file': ('Skin.png', open('Skin.png', 'rb'))}
             response = session.put('https://api.mojang.com/user/profile/' + UUIDs[int(i /20 )] + '/skin', headers=({"Authorization":Tokens[int((i + 1) /20 )]}), files=files)
             response = response.result()
