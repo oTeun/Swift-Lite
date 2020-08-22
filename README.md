@@ -9,4 +9,4 @@
  5. (optional) Put the skin you want to upload when you snipe a name in the folder with name 'Skin.png'
  6. Run SwiftLite.py and the rest explains itself
 
- If you are having any issues feel free to join my discord server: https://discord.gg/2QyckKv
+ If you are having any issues feel free to join my discord server: https://discord.gg/2QyckKv or watch a tutorial at https://youtu.be/7kzeITp6ADE
