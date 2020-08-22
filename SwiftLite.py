@@ -2,7 +2,8 @@ from os import system
 from time import time, sleep
 from datetime import datetime
 import json
-
+from discord_webhooks import DiscordWebhooks
+from dhooks import Webhook
 
 
 #Define color codes
@@ -105,6 +106,7 @@ if len(uncheckedEmails) > 30:
 #Ask for the only input needed
 print ()
 wantedName = input(f'{swiftInput}What name to snipe: ')
+webhook_url = input(f'{swiftInput}Webhook URL (leave empty for none): ')
 
 
 #Getting drop time
@@ -286,15 +288,16 @@ for i in range(len(Emails) * 20):
         print (f'{swiftOutput}You sniped the name with request {i + 1} !')
         print (f'{swiftOutput}This request was most likely sent with account on line {int(i /20 ) + 1} in Accounts.txt')
 
-        try:
-            webbhook = open('webhook.txt', 'r+')
-            webhook = webbhook.readlines()
-            webhook = DiscordWebhooks(webhook[0])
-            webhook.set_content(title='New Snipe!', description=f'Succuessfully sniped name `{wantedName}`!', color=0x72FF33)
-            webhook.send()
-            print(f'{swiftOutput}Sent message in #Snipes!')
-        except:
+        if webhook_url == '':
             print(f'{swiftOutput}Did not find a webhook (or invalid), skipping!')
+        else:
+            try:
+                webhook = DiscordWebhooks(webhook_url)
+                webhook.set_content(title='New Snipe!', description=f'Succuessfully sniped name `{wantedName}`!', color=0x72FF33)
+                webhook.send()
+                print(f'{swiftOutput}Sent message in #Snipes!')
+            except:
+                print(f'{swiftOutput}Seems like an invalid webhook ¯\_(ツ)_/¯')
         try:
             files = {'model':'slim', 'file': ('Skin.png', open('Skin.png', 'rb'))}
             response = session.put('https://api.mojang.com/user/profile/' + UUIDs[int(i /20 )] + '/skin', headers=({"Authorization":Tokens[int((i + 1) /20 )]}), files=files)
