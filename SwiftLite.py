@@ -60,7 +60,7 @@ version = '1.0'
 def ascii():
     system('cls')
     print(f"""
-    {CYAN} ┌──swift Lite v{version}───────────────────────────────────────────┐{WHITE}
+    {CYAN} ┌── swift Lite v{version} ─────────────────────────────────────────┐{WHITE}
                                  _     ____   __
               _____ _      __   (_)   / __/  / /_
              / ___/| | /| / /  / /   / /_   / __/
