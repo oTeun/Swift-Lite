@@ -1,5 +1,8 @@
-# SwiftLite
+# SwiftLite (DISCONTINUED)
  Free Powerful Minecraft Name Sniper
+ 
+# Warning:
+This sniper is discontinued and outdated, if you want to snipe names, the fastest sniper as of right now is https://github.com/Kqzz/MCsniperPY :)
 
 # Usage:
  1. Make sure you have Python 3.8 installed
