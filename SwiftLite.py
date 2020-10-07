@@ -188,7 +188,7 @@ validate_reqs = list()
 
 
 print (f'{swiftOutput}Working accounts: {len(Emails)} / {len(uncheckedEmails)}')
-print (f'{swiftOutput}This means you can send {len(Emails) * 20} requests')
+print (f'{swiftOutput}This means you can send {len(Emails) * 3} requests')
 Delay = len(Emails) * 0.4
 
 
@@ -264,12 +264,12 @@ print (f'{swiftOutput}Started sending requests')
 
 #YEEET
 for i in range (len(Emails)):
-    for ii in range (20):
+    for ii in range (3):
         reqs.append(session.post(f'http://api.mojang.com/user/profile/{UUIDs[i]}/name', headers={'Authorization':Tokens[i]}, json={"name":wantedName,"password":Passwords[i]}))
 
 print ()
 
-for i in range(len(Emails) * 20):
+for i in range(len(Emails) * 3):
     req = reqs[i].result()
     if req.status_code == 400:
         print (f'{swiftOutput}Received response {i + 1} from mojang with status {RED}"Not available"{CYAN} | Status code: {req.status_code} [{time() - startSniping}]')
@@ -286,7 +286,7 @@ for i in range(len(Emails) * 20):
         print()
         print (f'{swiftOutput}Successfully set name to {wantedName} using Swift Lite v{version}')
         print (f'{swiftOutput}You sniped the name with request {i + 1} !')
-        print (f'{swiftOutput}This request was most likely sent with account on line {int(i /20 ) + 1} in Accounts.txt')
+        print (f'{swiftOutput}This request was most likely sent with account on line {int(i /3 ) + 1} in Accounts.txt')
 
         if webhook_url == '':
             print(f'{swiftOutput}Did not find a webhook (or invalid), skipping!')
